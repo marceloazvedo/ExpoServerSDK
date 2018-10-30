@@ -1,8 +1,8 @@
-package br.pb.jp.exponentServerSdkJava.exceptions;
+package br.pb.jp.exponent.exception;
 
-import org.apache.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 
-public class DeviceNotRegisteredException extends ExpoException{
+public class DeviceNotRegisteredException extends ExpoBaseException{
 
 	private static final long serialVersionUID = 7399589103518215167L;
 
