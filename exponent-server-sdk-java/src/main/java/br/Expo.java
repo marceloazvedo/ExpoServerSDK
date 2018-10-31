@@ -30,7 +30,7 @@ public class Expo {
 			throw new ExpoSDKException("You cannot create a connection without a push-token");
 		}
 		Retrofit retrofit = new Retrofit.Builder()
-				.baseUrl(EXPO_PRODUCTION_URL)
+				.baseUrl(EXPO_PRODUCTION_URL + EXPO_BASE_API_URL)
 				.build();
 		
 		return retrofit.create(ExpoApi.class);
