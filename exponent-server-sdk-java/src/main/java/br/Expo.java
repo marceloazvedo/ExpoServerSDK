@@ -7,6 +7,7 @@ import java.util.regex.Pattern;
 
 import br.pb.jp.exponent.api.ExpoApi;
 import br.pb.jp.exponent.domain.exception.ExpoSDKException;
+import br.pb.jp.exponent.domain.exception.MessageTooBigException;
 import br.pb.jp.exponent.domain.request.ExpoPushMessage;
 import br.pb.jp.exponent.domain.request.RequestGetReceipts;
 import br.pb.jp.exponent.domain.response.ExpoResponse;
@@ -46,14 +47,20 @@ public class Expo {
 		
 	}
 	
-	public ExpoResponse sendExpoPushMessages(List<ExpoPushMessage> expoPushMessages) throws ExpoSDKException, IOException {
+	public ExpoResponse sendExpoPushMessages(List<ExpoPushMessage> expoPushMessages) throws ExpoSDKException, IOException, MessageTooBigException {
 		isConnected();
 		
 		/**
-		 * Check if is a valid token
+		 * Check if has more than allowed
+		 */
+		checkMessagesQuantities(expoPushMessages);
+		
+		/**
+		 * Check if is a valid token and if message is too big
 		 */
 		for (ExpoPushMessage expoPushMessage : expoPushMessages) {
 			this.isExpoPushToken(expoPushMessage.getTo());
+			this.checkMessageLength(expoPushMessage);
 		}
 		
 		ExpoResponse response = null;
@@ -68,13 +75,14 @@ public class Expo {
 		return response;
 	}
 
-	public ExpoResponse sendExpoPushMessage(ExpoPushMessage expoPushMessage) throws ExpoSDKException, IOException {
+	public ExpoResponse sendExpoPushMessage(ExpoPushMessage expoPushMessage) throws ExpoSDKException, IOException, MessageTooBigException {
 		isConnected();
 		
 		/**
-		 * Check if is a valid token
+		 * Check if is a valid token and if message is too big
 		 */
 		this.isExpoPushToken(expoPushMessage.getTo());
+		this.checkMessageLength(expoPushMessage);
 		
 		ExpoResponse response = null;
 		try {
@@ -125,7 +133,17 @@ public class Expo {
 		}
 	}
 	
+	private void checkMessagesQuantities(List<ExpoPushMessage> messages) throws ExpoSDKException {
+		if (messages.size() > 100) {
+			throw new ExpoSDKException("There is more than 100 messages, limit is 100 messages per request");
+		}
+	}
 	
+	private void checkMessageLength(ExpoPushMessage message) throws MessageTooBigException {
+		if (message.getBody().length() > 1024) {
+			throw new MessageTooBigException("Body from " + message.getTo() + " token is too big. Limit is 1024 length.", null, null);
+		}
+	}
 
 
 }
