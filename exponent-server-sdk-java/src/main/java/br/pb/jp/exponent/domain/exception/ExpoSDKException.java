@@ -1,4 +1,4 @@
-package br.pb.jp.exponent.exception;
+package br.pb.jp.exponent.domain.exception;
 
 public class ExpoSDKException extends Exception{
 	

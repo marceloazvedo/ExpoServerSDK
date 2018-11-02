@@ -1,4 +1,4 @@
-package br.pb.jp.exponent.exception;
+package br.pb.jp.exponent.domain.exception;
 
 import org.springframework.http.HttpStatus;
 

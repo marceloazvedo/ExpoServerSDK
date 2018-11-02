@@ -1,10 +1,8 @@
-package br.pb.jp.exponent.exception;
+package br.pb.jp.exponent.domain.exception;
 
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
-
-import br.pb.jp.exponent.domain.exception.ExpoAPIError;
 
 public class ExpoBaseException extends Exception {
 	

@@ -1,4 +1,4 @@
-package br.pb.jp.exponent.domain;
+package br.pb.jp.exponent.domain.request;
 
 public enum ExpoPriority {
 	

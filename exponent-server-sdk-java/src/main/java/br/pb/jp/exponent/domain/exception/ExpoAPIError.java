@@ -1,6 +1,7 @@
 package br.pb.jp.exponent.domain.exception;
 
 public class ExpoAPIError {
+	
 	private String code;
 	private String message;
 	
