@@ -30,8 +30,7 @@ public class Expo {
 	public Expo() {}
 
 	/**
-	 * This method returns an interface ExpoApi which
-	 * is the workable caller to expo's endpoints
+	 * This method instantiate an retrofit interface which is used in all lib
 	 * 
 	 * @param expoPushToken
 	 * @return

@@ -7,13 +7,13 @@ public class ExpoPushMessage {
 	
 	public ExpoPushMessage(String to, String data, String title, String body, Integer ttl, Long expiration,
 			ExpoPriority priority, String sound, Integer badge, String channelId) {
-		this.to = "ExponentPushToken[" + to + "]";
+		this.to = to;
 		this.data = data;
 		this.title = title;
 		this.body = body;
 		this.ttl = ttl;
 		this.expiration = expiration;
-		this.priority = priority;
+		this.priority = priority == null? ExpoPriority.DEFAULT : priority;
 		this.sound = sound;
 		this.badge = badge;
 		this.channelId = channelId;
