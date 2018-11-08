@@ -32,12 +32,16 @@ public class ExpoMainTest {
         expo.connect();
         
         //Create a list or single message
-        ExpoPushMessage message = new ExpoPushMessage("ExponentPushToken[X0w5peGUalgByuJR26qEi2]", null, "Test message", "Test Message", null, null, null, "default", null, null);
+        ExpoPushMessage message = new ExpoPushMessage()
+                  .to("ExponentPushToken[X0w5peGUalgByuJR26qEi2]")
+                  .title("Test message")
+                  .body("Test Message")
+                  .sound("default");
         ExpoPushMessage message2 = new ExpoPushMessage()
-        		.to("ExponentPushToken[X0w5peGUalgByuJR26qEi2]")
-        		.title("Test message")
-        		.body("Test Message")
-        		.sound("default");
+                  .to("ExponentPushToken[X0w5peGUalgByuJR26qEi2]")
+                  .title("Test message")
+                  .body("Test Message")
+                  .sound("default");
         
         Collection<ExpoPushMessage> messages = new LinkedList<ExpoPushMessage>();
         messages.add(message);
