@@ -1,8 +1,9 @@
 package br.pb.jp.exponent.domain.response;
 
+import java.util.Collection;
 import java.util.List;
 
-public class ExpoResponse {
+public class ExpoSingleResponse {
 	
 	/**
 	 * The response is a JSON object with two optional fields, data and errors. 
@@ -11,12 +12,12 @@ public class ExpoResponse {
 	 * 
 	 * source: https://docs.expo.io/versions/latest/guides/push-notifications#response-format
 	 */	
-	private List<ExpoResponseContent> data;
-	private List<ExpoResponseContent> errors;
+	private ExpoResponseContent data;
+	private Collection<ExpoResponseContent> errors;
 
-	public ExpoResponse() {}
+	public ExpoSingleResponse() {}
 
-	public List<ExpoResponseContent> getErrors() {
+	public Collection<ExpoResponseContent> getErrors() {
 		return errors;
 	}
 
@@ -25,11 +26,11 @@ public class ExpoResponse {
 	}
 
 
-	public List<ExpoResponseContent> getData() {
+	public ExpoResponseContent getData() {
 		return data;
 	}
 
-	public void setData(List<ExpoResponseContent> data) {
+	public void setData(ExpoResponseContent data) {
 		this.data = data;
 	}
 	

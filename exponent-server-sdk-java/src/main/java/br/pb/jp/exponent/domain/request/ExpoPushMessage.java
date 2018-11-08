@@ -13,7 +13,7 @@ public class ExpoPushMessage {
 		this.body = body;
 		this.ttl = ttl;
 		this.expiration = expiration;
-		this.priority = priority == null? ExpoPriority.DEFAULT : priority;
+		this.priority = priority == null? ExpoPriority.DEFAULT.getPriority() : priority.getPriority();
 		this.sound = sound;
 		this.badge = badge;
 		this.channelId = channelId;
@@ -22,26 +22,26 @@ public class ExpoPushMessage {
 	/**
 	 * An Expo push token specifying the recipient of this message.
 	 */
-	private String to;
+	private String to = null;
 
 	/**
 	 * A JSON object delivered to your app. It may be up to about 4KiB; the total
 	 * notification payload sent to Apple and Google must be at most 4KiB or else
 	 * you will get a "Message Too Big" error.
 	 */
-	private String data;
+	private String data = null;
 
 	/**
 	 * The title to display in the notification. Devices often display this in bold
 	 * above the notification body. Only the title might be displayed on devices
 	 * with smaller screens like Apple Watch.
 	 */
-	private String title;
+	private String title = null;
 
 	/**
 	 * The message to display in the notification
 	 */
-	private String body;
+	private String body = null;
 
 	/**
 	 * Time to Live: the number of seconds for which the message may be kept around
@@ -52,14 +52,14 @@ public class ExpoPushMessage {
 	 *
 	 * This field takes precedence over `expiration` when both are specified.
 	 */
-	private Integer ttl;
+	private Integer ttl = null;
 
 	/**
 	 * A timestamp since the UNIX epoch specifying when the message expires. This
 	 * has the same effect as the `ttl` field and is just an absolute timestamp
 	 * instead of a relative time.
 	 */
-	private Long expiration;
+	private Long expiration = null;
 
 	/**
 	 * The delivery priority of the message. Specify "default" or omit this field to
@@ -77,7 +77,7 @@ public class ExpoPushMessage {
 	 * messages are sent immediately. Normal priority corresponds to APNs priority
 	 * level 5 and high priority to 10.
 	 */
-	private ExpoPriority priority;
+	private String priority = ExpoPriority.DEFAULT.getPriority();
 
 	// iOS-specific fields
 
@@ -92,13 +92,13 @@ public class ExpoPushMessage {
 	 * 
 	 * possible values: 'default' or null
 	 */
-	private String sound;
+	private String sound = null;
 
 	/**
 	 * Number to display in the badge on the app icon. Specify zero to clear the
 	 * badge.
 	 */
-	private Integer badge;
+	private Integer badge = null;
 
 	// Android-specific fields
 
@@ -112,7 +112,7 @@ public class ExpoPushMessage {
 	 * channel on the device if it does not yet exist. However, use caution, as the
 	 * "Default" channel is user-facing and you may not be able to fully delete it.
 	 */
-	private String channelId;
+	private String channelId = null;
 
 	public String getTo() {
 		return to;
@@ -168,12 +168,12 @@ public class ExpoPushMessage {
 		return this;
 	}
 
-	public ExpoPriority getPriority() {
+	public String getPriority() {
 		return priority;
 	}
 
 	public ExpoPushMessage priority(ExpoPriority priority) {
-		this.priority = priority;
+		this.priority = priority.getPriority();
 		return this;
 	}
 

@@ -1,17 +1,19 @@
 package br.pb.jp.exponent;
 
 import java.io.IOException;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
-import java.util.regex.Pattern;
 
 import br.pb.jp.exponent.api.ExpoApi;
 import br.pb.jp.exponent.domain.exception.ExpoSDKException;
 import br.pb.jp.exponent.domain.exception.MessageTooBigException;
 import br.pb.jp.exponent.domain.request.ExpoPushMessage;
 import br.pb.jp.exponent.domain.request.RequestGetReceipts;
-import br.pb.jp.exponent.domain.response.ExpoResponse;
+import br.pb.jp.exponent.domain.response.ExpoMultipleResponse;
+import br.pb.jp.exponent.domain.response.ExpoSingleResponse;
+import retrofit2.Response;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Expo {
 	
@@ -23,7 +25,7 @@ public class Expo {
 	/**
 	 * The expo api base url
 	 */
-	public static final String EXPO_BASE_API_URL = "/--/api/v2";
+	public static final String EXPO_BASE_API_URL = "/--/api/v2/";
 	
 	private ExpoApi expoApi = null;
 	
@@ -40,13 +42,14 @@ public class Expo {
 		
 		Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl(EXPO_PRODUCTION_URL + EXPO_BASE_API_URL)
+				.addConverterFactory(GsonConverterFactory.create())
 				.build();
 		
 		this.expoApi = retrofit.create(ExpoApi.class);
 		
 	}
 	
-	public ExpoResponse sendExpoPushMessages(List<ExpoPushMessage> expoPushMessages) throws ExpoSDKException, IOException, MessageTooBigException {
+	public ExpoMultipleResponse sendExpoPushMessages(Collection<ExpoPushMessage> expoPushMessages) throws ExpoSDKException, IOException, MessageTooBigException {
 		isConnected();
 		
 		/**
@@ -62,10 +65,11 @@ public class Expo {
 			this.checkMessageLength(expoPushMessage);
 		}
 		
-		ExpoResponse response = null;
+		ExpoMultipleResponse response = null;
 		
 		try {
-			response = this.expoApi.sendExpoPushMessages(expoPushMessages).execute().body();
+			Response<ExpoMultipleResponse> responseCalled = this.expoApi.sendExpoPushMessages(expoPushMessages).execute();
+			response = responseCalled.body();
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw e;
@@ -74,7 +78,7 @@ public class Expo {
 		return response;
 	}
 
-	public ExpoResponse sendExpoPushMessage(ExpoPushMessage expoPushMessage) throws ExpoSDKException, IOException, MessageTooBigException {
+	public ExpoSingleResponse sendExpoPushMessage(ExpoPushMessage expoPushMessage) throws ExpoSDKException, IOException, MessageTooBigException {
 		isConnected();
 		
 		/**
@@ -83,9 +87,10 @@ public class Expo {
 		this.isExpoPushToken(expoPushMessage.getTo());
 		this.checkMessageLength(expoPushMessage);
 		
-		ExpoResponse response = null;
+		ExpoSingleResponse response = null;
 		try {
-			response = this.expoApi.sendExpoPushMessage(expoPushMessage).execute().body();
+			Response<ExpoSingleResponse> responseCalled = this.expoApi.sendExpoPushMessage(expoPushMessage).execute();
+			response = responseCalled.body();
 		} catch (IOException e) {
 			e.printStackTrace();
 			throw e;
@@ -94,10 +99,10 @@ public class Expo {
 		return response;
 	}
 
-	public Map<String, ExpoResponse> getExpoReceipts(RequestGetReceipts requestGetReceipts) throws ExpoSDKException, IOException {
+	public Map<String, ExpoSingleResponse> getExpoReceipts(RequestGetReceipts requestGetReceipts) throws ExpoSDKException, IOException {
 		isConnected();
 		
-		Map<String, ExpoResponse> response = null;
+		Map<String, ExpoSingleResponse> response = null;
 		try {
 			response = this.expoApi.getExpoReceipts(requestGetReceipts).execute().body();
 		} catch (IOException e) {
@@ -125,14 +130,14 @@ public class Expo {
 		 * Regex that verify the ExpoPushToken;
 		 */
 		if (!expoPushToken.startsWith("ExponentPushToken[") 
-				|| !expoPushToken.startsWith("]")
-				|| !Pattern.matches("^[a-z\\d]{8}-[a-z\\d]{4}-[a-z\\d]{4}-[a-z\\d]{4}-[a-z\\d]{12}$", expoPushToken)) 
+				|| !expoPushToken.endsWith("]")
+			) 
 		{
 			throw new ExpoSDKException("Invalid ExponentPushToken. Valid example: 'ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]' ");
 		}
 	}
 	
-	private void checkMessagesQuantities(List<ExpoPushMessage> messages) throws ExpoSDKException {
+	private void checkMessagesQuantities(Collection<ExpoPushMessage> messages) throws ExpoSDKException {
 		if (messages.size() > 100) {
 			throw new ExpoSDKException("There is more than 100 messages, limit is 100 messages per request");
 		}

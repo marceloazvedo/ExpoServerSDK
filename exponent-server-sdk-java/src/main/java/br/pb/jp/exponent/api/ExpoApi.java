@@ -1,11 +1,12 @@
 package br.pb.jp.exponent.api;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 
 import br.pb.jp.exponent.domain.request.ExpoPushMessage;
 import br.pb.jp.exponent.domain.request.RequestGetReceipts;
-import br.pb.jp.exponent.domain.response.ExpoResponse;
+import br.pb.jp.exponent.domain.response.ExpoMultipleResponse;
+import br.pb.jp.exponent.domain.response.ExpoSingleResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -19,26 +20,26 @@ public interface ExpoApi {
 	
 	@Headers({
 		"accept: application/json",
-		"accept-encoding: gzip, deflate",
 		"content-type: application/json"
 	})
-	@POST("/push/send")
-	Call<ExpoResponse> sendExpoPushMessages(@Body List<ExpoPushMessage> expoPushMessages);
+	// Endpoint starts without '/' to not be a absolutely path
+	@POST("push/send")
+	Call<ExpoMultipleResponse> sendExpoPushMessages(@Body Collection<ExpoPushMessage> expoPushMessages);
 	
 	@Headers({
 		"accept: application/json",
-		"accept-encoding: gzip, deflate",
 		"content-type: application/json"
 	})
-	@POST("/push/send")
-	Call<ExpoResponse> sendExpoPushMessage(@Body ExpoPushMessage expoPushMessage);
+	// Endpoint starts without '/' to not be a absolutely path
+	@POST("push/send")
+	Call<ExpoSingleResponse> sendExpoPushMessage(@Body ExpoPushMessage expoPushMessage);
 	
 	@Headers({
 		"accept: application/json",
-		"accept-encoding: gzip, deflate",
 		"content-type: application/json"
 	})
-	@GET("/push/getReceipts")
-	Call<Map<String, ExpoResponse>> getExpoReceipts(@Body RequestGetReceipts requestGetReceipts);
+	// Endpoint starts without '/' to not be a absolutely path
+	@GET("push/getReceipts")
+	Call<Map<String, ExpoSingleResponse>> getExpoReceipts(@Body RequestGetReceipts requestGetReceipts);
 	
 }
