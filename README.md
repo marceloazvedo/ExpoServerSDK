@@ -34,10 +34,10 @@ public class ExpoMainTest {
         //Create a list or single message
         ExpoPushMessage message = new ExpoPushMessage("ExponentPushToken[X0w5peGUalgByuJR26qEi2]", null, "Test message", "Test Message", null, null, null, "default", null, null);
         ExpoPushMessage message2 = new ExpoPushMessage()
-        							.to("ExponentPushToken[X0w5peGUalgByuJR26qEi2]")
-        							.title("Test message")
-        							.body("Test Message")
-        							.sound("default");
+        		.to("ExponentPushToken[X0w5peGUalgByuJR26qEi2]")
+        		.title("Test message")
+        		.body("Test Message")
+        		.sound("default");
         
         Collection<ExpoPushMessage> messages = new LinkedList<ExpoPushMessage>();
         messages.add(message);
@@ -49,18 +49,18 @@ public class ExpoMainTest {
         	ExpoSingleResponse response = expo.sendExpoPushMessage(message2);
         	ExpoMultipleResponse multipleResponse = expo.sendExpoPushMessages(messages);
         	
-      /**
-			 * If the collection Erros inside of multipleResponse is != null and size > 0
-			 * Then, the request failed
-			 * 
-			 * But if errors is empty or null this doesn't mean that there is no error in request
-			 * you need to verify every "status" property in response
-			 */
+        /**
+        * If the collection Erros inside of multipleResponse is != null and size > 0
+        * Then, the request failed
+        * 
+        * But if errors is empty or null this doesn't mean that there is no error in request
+        * you need to verify every "status" property in response
+        */
         	
-			System.out.println(response.getData());
-			
-			
-			System.out.println(multipleResponse.getData());
+        System.out.println(response.getData());
+
+
+        System.out.println(multipleResponse.getData());
 			
 		} catch (MessageTooBigException e) {
 			System.out.println(e.getMessage());
