@@ -1,4 +1,4 @@
-package br;
+package br.pb.jp.exponent;
 
 import java.io.IOException;
 import java.util.List;
