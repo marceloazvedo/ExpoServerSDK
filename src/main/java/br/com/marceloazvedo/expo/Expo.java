@@ -4,6 +4,10 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
+import com.google.gson.Gson;
+import com.google.gson.JsonParser;
+import com.google.gson.JsonSyntaxException;
+
 import br.com.marceloazvedo.expo.api.ExpoApi;
 import br.com.marceloazvedo.expo.domain.exception.ExpoSDKException;
 import br.com.marceloazvedo.expo.domain.exception.MessageTooBigException;
@@ -29,7 +33,16 @@ public class Expo {
 	
 	private ExpoApi expoApi = null;
 	
-	public Expo() {}
+	private Expo() {}
+	
+	private static Expo instance = null;
+	
+	public static Expo getInstance() {
+		if(instance == null) {
+			instance = new Expo();
+		}
+		return instance;
+	}
 
 	/**
 	 * This method instantiate an retrofit interface which is used in all lib
@@ -85,6 +98,7 @@ public class Expo {
 		 * Check if is a valid token and if message is too big
 		 */
 		this.isExpoPushToken(expoPushMessage.getTo());
+		this.isJsonData(expoPushMessage.getData());
 		this.checkMessageLength(expoPushMessage);
 		
 		ExpoSingleResponse response = null;
@@ -135,6 +149,16 @@ public class Expo {
 		{
 			throw new ExpoSDKException("Invalid ExponentPushToken. Valid example: 'ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]' ");
 		}
+	}
+	
+	private void isJsonData(String jsonData) throws ExpoSDKException {
+		
+		try {
+			JsonParser.parseString(jsonData);
+		}catch(JsonSyntaxException ex) {
+			throw new ExpoSDKException("The data you are trying do send is not a valid Json");
+		}
+		
 	}
 	
 	private void checkMessagesQuantities(Collection<ExpoPushMessage> messages) throws ExpoSDKException {
