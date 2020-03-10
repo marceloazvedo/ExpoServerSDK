@@ -1,16 +1,16 @@
-package br.pb.jp.exponent;
+package br.com.marceloazvedo.expo;
 
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
-import br.pb.jp.exponent.api.ExpoApi;
-import br.pb.jp.exponent.domain.exception.ExpoSDKException;
-import br.pb.jp.exponent.domain.exception.MessageTooBigException;
-import br.pb.jp.exponent.domain.request.ExpoPushMessage;
-import br.pb.jp.exponent.domain.request.RequestGetReceipts;
-import br.pb.jp.exponent.domain.response.ExpoMultipleResponse;
-import br.pb.jp.exponent.domain.response.ExpoSingleResponse;
+import br.com.marceloazvedo.expo.api.ExpoApi;
+import br.com.marceloazvedo.expo.domain.exception.ExpoSDKException;
+import br.com.marceloazvedo.expo.domain.exception.MessageTooBigException;
+import br.com.marceloazvedo.expo.domain.request.ExpoPushMessage;
+import br.com.marceloazvedo.expo.domain.request.RequestGetReceipts;
+import br.com.marceloazvedo.expo.domain.response.ExpoMultipleResponse;
+import br.com.marceloazvedo.expo.domain.response.ExpoSingleResponse;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;

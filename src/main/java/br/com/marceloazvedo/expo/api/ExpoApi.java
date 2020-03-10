@@ -1,12 +1,12 @@
-package br.pb.jp.exponent.api;
+package br.com.marceloazvedo.expo.api;
 
 import java.util.Collection;
 import java.util.Map;
 
-import br.pb.jp.exponent.domain.request.ExpoPushMessage;
-import br.pb.jp.exponent.domain.request.RequestGetReceipts;
-import br.pb.jp.exponent.domain.response.ExpoMultipleResponse;
-import br.pb.jp.exponent.domain.response.ExpoSingleResponse;
+import br.com.marceloazvedo.expo.domain.request.ExpoPushMessage;
+import br.com.marceloazvedo.expo.domain.request.RequestGetReceipts;
+import br.com.marceloazvedo.expo.domain.response.ExpoMultipleResponse;
+import br.com.marceloazvedo.expo.domain.response.ExpoSingleResponse;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;

@@ -1,4 +1,5 @@
-package br.pb.jp.exponent.domain.request;
+package br.com.marceloazvedo.expo.domain.request;
+
 
 public class ExpoPushMessage {
 	

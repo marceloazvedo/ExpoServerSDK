@@ -1,4 +1,4 @@
-package br.pb.jp.exponent.domain.exception;
+package br.com.marceloazvedo.expo.domain.exception;
 
 public class ExpoAPIError {
 	

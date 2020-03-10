@@ -1,4 +1,4 @@
-package br.pb.jp.exponent.domain.response;
+package br.com.marceloazvedo.expo.domain.response;
 
 
 /**
