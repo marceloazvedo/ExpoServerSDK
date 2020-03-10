@@ -1,9 +1,17 @@
-##ExpoServerSdkJava
+<div align="center">
+  <h5>Hi, my name is Marcelo Azevedo!</h5>
+</div>
 
-This project was developed in Java, to java, using Maven.
-
-<div>
-<svg width="94" height="20"><linearGradient id="b" x2="0" y2="100%"><stop offset="0" stop-color="#bbb" stop-opacity=".1"/><stop offset="1" stop-opacity=".1"/></linearGradient><clipPath id="a"><rect width="94" height="20" rx="3" fill="#fff"/></clipPath><g clip-path="url(#a)"><path fill="#555" d="M0 0h49v20H0z"/><path fill="#007ec6" d="M49 0h45v20H49z"/><path fill="url(#b)" d="M0 0h94v20H0z"/></g><g fill="#fff" text-anchor="middle" font-family="DejaVu Sans,Verdana,Geneva,sans-serif" font-size="110"> <text x="255" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="390">release</text><text x="255" y="140" transform="scale(.1)" textLength="390">release</text><text x="705" y="150" fill="#010101" fill-opacity=".3" transform="scale(.1)" textLength="350">v1.0.0</text><text x="705" y="140" transform="scale(.1)" textLength="350">v1.0.0</text></g> </svg>
+<div align="center">
+  <a href="www.linkedin.com/in/marcelo-azvedo">
+  <img width="20" height="20" src="https://content.linkedin.com/content/dam/me/business/en-us/amp/brand-site/v2/bg/LI-Bug.svg.original.svg"/> Marcelo Azevedo</a>
+    <a href="https://twitter.com/marceloazvedo">
+    <img width="20" src="https://abs.twimg.com/errors/logo23x19.png"> @marceloazvedo </a>
 </div>
 
 <hr></hr>
+
+<img src="https://img.shields.io/badge/release-v1.0.0-blue">
+
+##ExpoServerSdkJava
+This project was developed in Java, to java, using Maven.
