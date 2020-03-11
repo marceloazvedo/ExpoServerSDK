@@ -3,7 +3,6 @@ package br.com.marceloazvedo.expo.domain.request;
 
 public class ExpoPushMessage {
 	
-	// Default constructor
 	public ExpoPushMessage() {}
 	
 	public ExpoPushMessage(String to, String data, String title, String body, Integer ttl, Long expiration,

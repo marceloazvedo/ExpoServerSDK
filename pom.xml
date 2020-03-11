@@ -2,9 +2,15 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>expo-server-sdk</groupId>
-	<artifactId>ExpoServerSDK</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<groupId>br.com.marceloazvedo.expo</groupId>
+	<artifactId>expo-server-sdk</artifactId>
+	<version>1.0.0</version>
+
+	<name>ExpoServerSDK</name>
+	<description>This is a project to send notifications
+	to ReactNative developeds using Expo, ie 
+	ExpoServerSDK.</description>
+	<url>https://github.com/marceloazvedo/ExpoServerSDK</url>
 
 	<dependencies>
 

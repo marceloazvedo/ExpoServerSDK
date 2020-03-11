@@ -14,7 +14,7 @@ public class TestSendNotification {
 
 	@Test
 	public void send() throws MessageTooBigException, ExpoSDKException, IOException {
-		ExpoPushMessage expoPushMessage = new ExpoPushMessage("ExponentPushToken[VFsdXaBA9nxKs_lalSZcSV]", "Algum valor", "Essa é uma notificação", "Sanderson Sanderson", null, null, ExpoPriority.HIGH, null, null, null);
+		ExpoPushMessage expoPushMessage = new ExpoPushMessage("ExponentPushToken[xxxxxxxxxxxxxxxxxxxxxx]", "{}", "Title", "message", null, null, ExpoPriority.HIGH, null, null, null);
 		Expo.getInstance().sendExpoPushMessage(expoPushMessage);
 	}
 	

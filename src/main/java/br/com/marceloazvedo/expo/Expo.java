@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Map;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
 
@@ -24,12 +23,12 @@ public class Expo {
 	/**
 	 * The expo production base URL
 	 */
-	public static final String EXPO_PRODUCTION_URL = "https://exp.host";
+	private static final String EXPO_PRODUCTION_URL = "https://exp.host";
 	
 	/**
 	 * The expo api base url
 	 */
-	public static final String EXPO_BASE_API_URL = "/--/api/v2/";
+	private static final String EXPO_BASE_API_URL = "/--/api/v2/";
 	
 	private ExpoApi expoApi = null;
 	
@@ -37,6 +36,13 @@ public class Expo {
 	
 	private static Expo instance = null;
 	
+	/**
+	 * Expo is a Singletone, you just need to use
+	 *  this method to get the instance and use 
+	 *  to send the notifications, for example.
+	 *   
+	 * @return Expo instance
+	 */
 	public static Expo getInstance() {
 		if(instance == null) {
 			instance = new Expo();
@@ -44,14 +50,7 @@ public class Expo {
 		return instance;
 	}
 
-	/**
-	 * This method instantiate an retrofit interface which is used in all lib
-	 * 
-	 * @param expoPushToken
-	 * @return
-	 * @throws ExpoSDKException
-	 */
-	public void connect() throws ExpoSDKException {
+	private void connect() throws ExpoSDKException {
 		
 		Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl(EXPO_PRODUCTION_URL + EXPO_BASE_API_URL)
@@ -62,6 +61,19 @@ public class Expo {
 		
 	}
 	
+	/**
+	 * @param expoPushMessages Collection with all
+	 * information about recipients and message 
+	 * content.
+	 *  
+	 * @return Return information about the sended
+	 *  message, like the http status code, api 
+	 *  message, code and errors. 
+	 *  
+	 * @throws ExpoSDKException
+	 * @throws IOException
+	 * @throws MessageTooBigException
+	 */
 	public ExpoMultipleResponse sendExpoPushMessages(Collection<ExpoPushMessage> expoPushMessages) throws ExpoSDKException, IOException, MessageTooBigException {
 		isConnected();
 		
@@ -91,11 +103,26 @@ public class Expo {
 		return response;
 	}
 
+	/**
+	 * @param expoPushMessage Has all information
+	 *  about the single notification sended, like
+	 *  who receive the message, the message, title
+	 *  message, and others.
+	 *  
+	 * @return Return information about the sended
+	 *  message, like the http status code, api 
+	 *  message, code and errors. 
+	 *  
+	 * @throws ExpoSDKException
+	 * @throws IOException
+	 * @throws MessageTooBigException
+	 */
 	public ExpoSingleResponse sendExpoPushMessage(ExpoPushMessage expoPushMessage) throws ExpoSDKException, IOException, MessageTooBigException {
 		isConnected();
 		
 		/**
-		 * Check if is a valid token and if message is too big
+		 * Validations
+		 * Check if is a valid token, if data is a Json valid and if message is too big
 		 */
 		this.isExpoPushToken(expoPushMessage.getTo());
 		this.isJsonData(expoPushMessage.getData());
