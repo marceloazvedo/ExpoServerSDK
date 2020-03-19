@@ -1,6 +1,5 @@
 package br.com.marceloazvedo.expo.domain.request;
 
-
 public class ExpoPushMessage {
 	
 	public ExpoPushMessage() {}

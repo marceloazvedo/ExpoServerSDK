@@ -1,6 +1,5 @@
 package br.com.marceloazvedo.expo.domain.response;
 
-import java.util.Collection;
 import java.util.List;
 
 public class ExpoMultipleResponse {
@@ -12,12 +11,12 @@ public class ExpoMultipleResponse {
 	 * 
 	 * source: https://docs.expo.io/versions/latest/guides/push-notifications#response-format
 	 */	
-	private Collection<ExpoResponseContent> data;
-	private Collection<ExpoResponseContent> errors;
+	private List<ExpoResponseContent> data;
+	private List<ExpoResponseContent> errors;
 
 	public ExpoMultipleResponse() {}
 
-	public Collection<ExpoResponseContent> getErrors() {
+	public List<ExpoResponseContent> getErrors() {
 		return errors;
 	}
 
@@ -26,11 +25,11 @@ public class ExpoMultipleResponse {
 	}
 
 
-	public Collection<ExpoResponseContent> getData() {
+	public List<ExpoResponseContent> getData() {
 		return data;
 	}
 
-	public void setData(List<ExpoResponseContent> data) {
+	public void setData(List<ExpoResponseContent> data) {	
 		this.data = data;
 	}
 	
