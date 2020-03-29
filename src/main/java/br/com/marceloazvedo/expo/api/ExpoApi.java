@@ -14,10 +14,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 
 public interface ExpoApi {
-	
-	public final String EXPO_PUSH_TOKEN = null;
-	
-	
+
 	@Headers({
 		"accept: application/json",
 		"content-type: application/json"

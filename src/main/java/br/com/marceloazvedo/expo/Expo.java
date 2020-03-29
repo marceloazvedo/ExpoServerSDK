@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.Callable;
 
 import com.google.gson.JsonParser;
 import com.google.gson.JsonSyntaxException;
@@ -25,7 +24,7 @@ public class Expo {
 	/**
 	 * The expo production base URL
 	 */
-	private static final String EXPO_PRODUCTION_URL = "https://exp.host";
+	private static final String EXPO_PRODUCTION_URL = "es";
 
 	/**
 	 * The expo api base url
