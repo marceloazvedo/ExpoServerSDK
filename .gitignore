@@ -6,3 +6,7 @@ target/
 .classpath
 .project
 .settings/
+
+# Intellij IDEA
+expo-server-sdk.iml
+.idea/
