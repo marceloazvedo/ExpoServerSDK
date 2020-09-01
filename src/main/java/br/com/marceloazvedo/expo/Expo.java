@@ -24,7 +24,7 @@ public class Expo {
 	/**
 	 * The expo production base URL
 	 */
-	private static final String EXPO_PRODUCTION_URL = "es";
+	private static final String EXPO_PRODUCTION_URL = "https://exp.host";
 
 	/**
 	 * The expo api base url
@@ -56,7 +56,7 @@ public class Expo {
 		return instance;
 	}
 
-	private void connect() throws ExpoSDKException {
+	private void connect() {
 		Retrofit retrofit = new Retrofit.Builder()
 				.baseUrl(EXPO_PRODUCTION_URL + EXPO_BASE_API_URL)
 				.addConverterFactory(GsonConverterFactory.create())

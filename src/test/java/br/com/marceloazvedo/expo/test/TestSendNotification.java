@@ -17,9 +17,7 @@ import br.com.marceloazvedo.expo.domain.response.ExpoSingleResponse;
 public class TestSendNotification {
 
 	private static final String[] EXPO_TOKENS = new String[] {
-			"ExponentPushToken[iDTvJxE7n9Q19BHJS0S7Gi]",
-			"ExponentPushToken[VFsdXaBA9nxKs_lalSZcSV]",
-			"ExponentPushToken[TnyE4QJvOXCWo7aLdrNUki]"
+			"ExponentPushToken[T-wIqzF6PDFDdLxRenfbpH]"
 	};
 
 	private static final String NOTIFICATION_SOUND = "default";
